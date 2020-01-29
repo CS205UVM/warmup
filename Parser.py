@@ -1,3 +1,4 @@
+"""
 load data
 help
 quit
@@ -12,3 +13,4 @@ select songs where length is < some value
 select songs where length is > some value
 select songs where popularity is < some value
 select songs where popularity is > some value
+"""
