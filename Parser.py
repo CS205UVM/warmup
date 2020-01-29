@@ -95,8 +95,5 @@ def help():
 def quit():
     exit(0)
 
-def allSongs():
-    pass
-
 
 main()
