@@ -15,11 +15,14 @@ select songs where length is > some value
 select songs where popularity is < some value
 select songs where popularity is > some value
 """
-
+import Queryfunctions
 # keep program running and reentering the CLI, in the future program will run
 # until quit command is issued.
 def main():
     print("Welcome to Song/Artist Parser")  # Greeting can be changed later
+
+    Query = Queryfunctions
+
     while True:
         # Get command from user
         request = input("")
@@ -35,6 +38,7 @@ def main():
 
         # To view the top songs in the database
         if request == "":
+            Query.allArtists()
             pass  # need QueryFunctions method
 
         # To view the top artists in the database
