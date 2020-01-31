@@ -38,40 +38,35 @@ def main():
 
         # To view the top songs in the database
         if request == "":
-            Query.allArtists() #TODO: This is ex of call not call for this request
-            pass  # need QueryFunctions method
+            Query.allSongs() #TODO: This is ex of call not call for this request
 
         # To view the top artists in the database
         if request == "":
-            pass  # need QueryFunctions method
+            Query.allArtists()
 
         # To view a range of top songs
         if request == "":
-            pass  # need QueryFunctions method
+            Query.songBetweenRank()
 
         # To view a range of top artists
         if request == "":
-            pass  # need QueryFunctions method
+            Query.artistBetweenRank()
 
         # To view all songs of a specific genre
         if request == "":
-            pass  # need QueryFunctions method
+            Query.genreAndSong()
 
         # To view all songs from a particular artist
         if request == "":
-            pass  # need QueryFunctions method
+            Query.artistAndSong()
 
         # To view songs within a particular length
         if request == "":
-            pass  # need QueryFunctions method
-
-        # To view the top songs in the database
-        if request == "":
-            pass  # need QueryFunctions method
+            Query.songBetweenLength()
 
         # To view the popularity rank of a particular artist
         if request == "":
-            pass  # need QueryFunctions method
+            Query.artistandRank()
 """
 one of the commands should be load data, which will create the database 
 and the schema and read data from your csv ﬁles into the tables; if the 

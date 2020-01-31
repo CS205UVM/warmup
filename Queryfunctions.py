@@ -38,22 +38,21 @@ def songAndLength():
 
     return
 
-# if a user wants songs less than a certain popularity
-def songLessRank(rank):
+# if a user wants songs in a range of popularity
+def songBetweenRank(lowval,highval):
 
     return
 
-#if a user wants osngs more than a certain popularity
-def songMoreRank(rank):
+
+#if a user wants songs in a range of length length
+def songBetweenLength(lowval,highval):
 
     return
 
-#if a user wants songs less than a certain length
-def songLessLength(length):
+def artistandRank():
 
     return
 
-#if a user wants osngs more than a certain length
-def songMoreLength(length):
+def artistBetweenRank(lowval,highval):
 
     return
