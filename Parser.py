@@ -45,12 +45,19 @@ def main():
             Query.allArtists()
 
         # To view a range of top songs
-        if "songs range" in request: #TODO: Retrieve lowval and highval
-            Query.songBetweenRank()
+        if "songs range" in request: #TODO: TEST THIS
+            values = [int(s) for s in s.split() if s.isdigit()]
+            lowval = values[0]
+            highval = values[1]
+            Query.songBetweenRank(lowval, highval)
 
         # To view a range of top artists
-        if "artists range" in request: #TODO: Retrieve lowval and highval
-            Query.artistBetweenRank()
+        if "artists range" in request: #TODO: TEST THIS
+            values = [int(s) for s in s.split() if s.isdigit()]
+            lowval = values[0]
+            highval = values[1]
+            Query.songBetweenRank(lowval, highval)
+            Query.artistBetweenRank(lowval, highval)
 
         # To view all songs of a specific genre
         if "songs genre" in request: #TODO: Retrieve genre
@@ -61,7 +68,11 @@ def main():
             Query.artistAndSong()
 
         # To view songs within a particular length
-        if "songs between length" in request: #TODO: Retrieve lowval and highval
+        if "songs between length" in request: #TODO: TEST THIS
+            values = [int(s) for s in s.split() if s.isdigit()]
+            lowval = values[0]
+            highval = values[1]
+            Query.songBetweenRank(lowval, highval)
             Query.songBetweenLength()
 
         # To view the popularity rank of a particular artist
@@ -110,9 +121,6 @@ def help():
     print("To view the length of a particular length, type 'song length \"SONG TITLE\"'")
     print("To view the artist of a particular song, type 'song artist \"SONG TITLE\"'")
     print("To quit to program, type 'quit'")
-
-
-    #TODO: More commands...?
 
 
 def quit():
