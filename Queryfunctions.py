@@ -108,51 +108,50 @@ def allArtists():
     return
 
 # if the user requests an artist and wants their song
-def artistAndSong():
+def artistAndSong(artist):
 
     return
 
 # if the user requests a song and wants the artist
-def songAndArtist():
+def songAndArtist(song):
 
     return
 
 # if a user requests a song and wants the popularity
-def songAndRank():
+def songAndRank(song):
 
     return
 
 # if a user requests a song and wants its genre
-def songAndGenre():
+def songAndGenre(song):
 
     return
 
 # if a user requests a genre and wants its songs
-def genreAndSong():
+def genreAndSong(genre):
 
     return
 
 #if a user requests a song and its length
-def songAndLength():
+def songAndLength(song):
 
     return
 
-# if a user wants songs less than a certain popularity
-def songLessRank(rank):
+# if a user wants songs in a range of popularity
+def songBetweenRank(lowval,highval):
 
     return
 
-#if a user wants osngs more than a certain popularity
-def songMoreRank(rank):
+
+#if a user wants songs in a range of length length
+def songBetweenLength(lowval,highval):
 
     return
 
-#if a user wants songs less than a certain length
-def songLessLength(length):
+def artistandRank(artist):
 
     return
 
-#if a user wants osngs more than a certain length
-def songMoreLength(length):
+def artistBetweenRank(lowval,highval):
 
     return

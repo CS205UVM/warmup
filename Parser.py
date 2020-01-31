@@ -38,40 +38,51 @@ def main():
 
         # To view the top songs in the database
         if request == "":
-            Query.allArtists() #TODO: This is ex of call not call for this request
-            pass  # need QueryFunctions method
+            Query.allSongs() #TODO: This is ex of call not call for this request
 
         # To view the top artists in the database
         if request == "":
-            pass  # need QueryFunctions method
+            Query.allArtists()
 
         # To view a range of top songs
         if request == "":
-            pass  # need QueryFunctions method
+            Query.songBetweenRank()
 
         # To view a range of top artists
         if request == "":
-            pass  # need QueryFunctions method
-
+            Query.artistBetweenRank()
         # To view all songs of a specific genre
         if request == "":
-            pass  # need QueryFunctions method
+            Query.genreAndSong()
 
         # To view all songs from a particular artist
         if request == "":
-            pass  # need QueryFunctions method
+            Query.artistAndSong()
 
         # To view songs within a particular length
         if request == "":
-            pass  # need QueryFunctions method
-
-        # To view the top songs in the database
-        if request == "":
-            pass  # need QueryFunctions method
+            Query.songBetweenLength()
 
         # To view the popularity rank of a particular artist
         if request == "":
-            pass  # need QueryFunctions method
+            Query.artistandRank()
+
+        # To view the artist of a song
+        if request == "":
+            Query.songAndArtist()
+
+        # To view the genre of a particular song
+        if request == "":
+            Query.songAndGenre()
+
+        # To view the length of a particular song
+        if request == "":
+            Query.songAndLength()
+
+        # To view the rank of a particular song
+        if request == "":
+            Query.songAndRank()
+
 """
 one of the commands should be load data, which will create the database 
 and the schema and read data from your csv ﬁles into the tables; if the 
@@ -93,6 +104,13 @@ def help():
     print("To view all songs from a particular artist, type 'artist songs \"SAMPLEARTIST\"'")
     print("To view songs within a particular length, type 'songs length \"LOWVAL\" to \"HIGHVAL\"'") #TODO: convert to seconds/minutes? (how does user enter this)
     print("To view the popularity rank of a particular artist, type 'artist popularity \"ARTIST NAME\"'")
+    print("To view the genre of a particular song, type 'song length \"SONG TITLE\"'")
+    print("To view the rank of a particular song, type 'song popularity \"SONG TITLE\"'")
+    print("To view the length of a particular length, type 'song length \"SONG TITLE\"'")
+    print("To view the artist of a particular song, type 'song artist \"SONG TITLE\"'")
+    print("To quit to program, type 'quit'")
+
+
     #TODO: More commands...?
 
 
