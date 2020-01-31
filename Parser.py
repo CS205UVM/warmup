@@ -65,7 +65,8 @@ def main():
 
         # To view all songs from a particular artist
         if "artist songs" in request: #TODO: Retrieve artist
-            Query.artistAndSong()
+            artist = re.findall(r"'([^]*'", request) #working on this :p
+            Query.artistAndSong(artist)
 
         # To view songs within a particular length
         if "songs between length" in request: #TODO: TEST THIS
@@ -73,7 +74,7 @@ def main():
             lowval = values[0]
             highval = values[1]
             Query.songBetweenRank(lowval, highval)
-            Query.songBetweenLength()
+            Query.songBetweenLength(lowval, highval)
 
         # To view the popularity rank of a particular artist
         if "artist popularity" in request: #TODO: Retrieve artist
@@ -110,11 +111,11 @@ def help():
     print("Help Section - Note that you must include quotations around input where directed. ")  # Can change message later
     print("To view the top songs in the database, type 'show all songs'")
     print("To view the top artists in the database, type 'show all artists'")
-    print("To view a range of top songs, type 'songs range \"LOWVAL\" to \"HIGHVAL\"'")
-    print("To view a range of top artists, type 'artists range \"LOWVAL\" to \"HIGHVAL\"'")
+    print("To view a range of top songs, type 'songs range LOWVAL to HIGHVAL'")
+    print("To view a range of top artists, type 'artists range LOWVAL to HIGHVAL'")
     print("To view all songs of a specific genre, type 'songs genre \"SAMPLEGENRE\"'")
     print("To view all songs from a particular artist, type 'artist songs \"SAMPLEARTIST\"'")
-    print("To view songs within a particular length, type 'songs between length \"LOWVAL\" to \"HIGHVAL\"'") #TODO: convert to seconds/minutes? (how does user enter this)
+    print("To view songs within a particular length, type 'songs between length LOWVAL to HIGHVAL'") #TODO: convert to seconds/minutes? (how does user enter this)
     print("To view the popularity rank of a particular artist, type 'artist popularity \"ARTIST NAME\"'")
     print("To view the genre of a particular song, type 'song length \"SONG TITLE\"'")
     print("To view the rank of a particular song, type 'song popularity \"SONG TITLE\"'")
