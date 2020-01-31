@@ -51,7 +51,6 @@ def main():
         # To view a range of top artists
         if request == "":
             Query.artistBetweenRank()
-
         # To view all songs of a specific genre
         if request == "":
             Query.genreAndSong()
@@ -67,6 +66,23 @@ def main():
         # To view the popularity rank of a particular artist
         if request == "":
             Query.artistandRank()
+
+        # To view the artist of a song
+        if request == "":
+            Query.songAndArtist()
+
+        # To view the genre of a particular song
+        if request == "":
+            Query.songAndGenre()
+
+        # To view the length of a particular song
+        if request == "":
+            Query.songAndLength()
+
+        # To view the rank of a particular song
+        if request == "":
+            Query.songAndRank()
+
 """
 one of the commands should be load data, which will create the database 
 and the schema and read data from your csv ﬁles into the tables; if the 
