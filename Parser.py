@@ -37,50 +37,51 @@ def main():
             quit()
 
         # To view the top songs in the database
-        if request == "":
+        if request == "show all songs":
             Query.allSongs() #TODO: This is ex of call not call for this request
 
         # To view the top artists in the database
-        if request == "":
+        if request == "show all artists":
             Query.allArtists()
 
         # To view a range of top songs
-        if request == "":
+        if "songs range" in request: #TODO: Retrieve lowval and highval
             Query.songBetweenRank()
 
         # To view a range of top artists
-        if request == "":
+        if "artists range" in request: #TODO: Retrieve lowval and highval
             Query.artistBetweenRank()
+
         # To view all songs of a specific genre
-        if request == "":
+        if "songs genre" in request: #TODO: Retrieve genre
             Query.genreAndSong()
 
         # To view all songs from a particular artist
-        if request == "":
+        if "artist songs" in request: #TODO: Retrieve artist
             Query.artistAndSong()
 
         # To view songs within a particular length
-        if request == "":
+        if "songs between length" in request: #TODO: Retrieve lowval and highval
             Query.songBetweenLength()
 
         # To view the popularity rank of a particular artist
-        if request == "":
+        if "artist popularity" in request: #TODO: Retrieve artist
             Query.artistandRank()
 
         # To view the artist of a song
-        if request == "":
+        if "song artist" in request: #TODO: Retrieve song
             Query.songAndArtist()
 
         # To view the genre of a particular song
-        if request == "":
+        if "song genre" in request: #TODO: Retrieve song
             Query.songAndGenre()
 
         # To view the length of a particular song
-        if request == "":
+        if "song length" in request: #TODO: Retrieve song
             Query.songAndLength()
 
         # To view the rank of a particular song
-        if request == "":
+        if "song popularity" in request: #TODO: Retrieve song
             Query.songAndRank()
 
 """
@@ -102,7 +103,7 @@ def help():
     print("To view a range of top artists, type 'artists range \"LOWVAL\" to \"HIGHVAL\"'")
     print("To view all songs of a specific genre, type 'songs genre \"SAMPLEGENRE\"'")
     print("To view all songs from a particular artist, type 'artist songs \"SAMPLEARTIST\"'")
-    print("To view songs within a particular length, type 'songs length \"LOWVAL\" to \"HIGHVAL\"'") #TODO: convert to seconds/minutes? (how does user enter this)
+    print("To view songs within a particular length, type 'songs between length \"LOWVAL\" to \"HIGHVAL\"'") #TODO: convert to seconds/minutes? (how does user enter this)
     print("To view the popularity rank of a particular artist, type 'artist popularity \"ARTIST NAME\"'")
     print("To view the genre of a particular song, type 'song length \"SONG TITLE\"'")
     print("To view the rank of a particular song, type 'song popularity \"SONG TITLE\"'")
