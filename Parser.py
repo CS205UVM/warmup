@@ -38,7 +38,7 @@ def main():
 
         # To view the top songs in the database
         if request == "":
-            Query.allArtists()
+            Query.allArtists() #TODO: This is ex of call not call for this request
             pass  # need QueryFunctions method
 
         # To view the top artists in the database
