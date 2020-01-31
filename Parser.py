@@ -104,6 +104,13 @@ def help():
     print("To view all songs from a particular artist, type 'artist songs \"SAMPLEARTIST\"'")
     print("To view songs within a particular length, type 'songs length \"LOWVAL\" to \"HIGHVAL\"'") #TODO: convert to seconds/minutes? (how does user enter this)
     print("To view the popularity rank of a particular artist, type 'artist popularity \"ARTIST NAME\"'")
+    print("To view the genre of a particular song, type 'song length \"SONG TITLE\"'")
+    print("To view the rank of a particular song, type 'song popularity \"SONG TITLE\"'")
+    print("To view the length of a particular length, type 'song length \"SONG TITLE\"'")
+    print("To view the artist of a particular song, type 'song artist \"SONG TITLE\"'")
+    print("To quit to program, type 'quit'")
+
+
     #TODO: More commands...?
 
 
