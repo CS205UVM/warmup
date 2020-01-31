@@ -1,14 +1,59 @@
-import csv, sqlite3
+# if the user wants a list of all songs
+def allSongs():
 
-con = sqlite3.connect(":memory:")
-cur = con.cursor()
-cur.execute("CREATE TABLE t (col1, col2);") # use your column names here
+    return
 
-with open('data.csv','rb') as fin: # `with` statement available in 2.5+
-    # csv.DictReader uses first line in file for column headings by default
-    dr = csv.DictReader(fin) # comma is default delimiter
-    to_db = [(i['col1'], i['col2']) for i in dr]
+# if the user wants a list of all artists
+def allArtists():
 
-cur.executemany("INSERT INTO t (col1, col2) VALUES (?, ?);", to_db)
-con.commit()
-con.close()
+    return
+
+# if the user requests an artist and wants their song
+def artistAndSong():
+
+    return
+
+# if the user requests a song and wants the artist
+def songAndArtist():
+
+    return
+
+# if a user requests a song and wants the popularity
+def songAndRank():
+
+    return
+
+# if a user requests a song and wants its genre
+def songAndGenre():
+
+    return
+
+# if a user requests a genre and wants its songs
+def genreAndSong():
+
+    return
+
+#if a user requests a song and its length
+def songAndLength():
+
+    return
+
+# if a user wants songs less than a certain popularity
+def songLessRank(rank):
+
+    return
+
+#if a user wants osngs more than a certain popularity
+def songMoreRank(rank):
+
+    return
+
+#if a user wants songs less than a certain length
+def songLessLength(length):
+
+    return
+
+#if a user wants osngs more than a certain length
+def songMoreLength(length):
+
+    return
