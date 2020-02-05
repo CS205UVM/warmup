@@ -20,12 +20,18 @@ import re
 # keep program running and reentering the CLI, in the future program will run
 # until quit command is issued.
 def main():
+
     print("Welcome to Song/Artist Parser")  # Greeting can be changed later
+    print("=============================")
+    print("Enter commands to find data")
+    print("Hint: type help to get a list of commands")
 
     Query = Queryfunctions
+    loadData()
 
     while True:
         # Get command from user
+        print("==>", end =" ")
         request = input("")
 
         # Conditionals corresponding to words entered
@@ -92,6 +98,7 @@ def main():
             song = re.findall(r'\"(.+?)\"', request)
             Query.song_and_popularity(c,song)
 
+
 """
 one of the commands should be load data, which will create the database 
 and the schema and read data from your csv ﬁles into the tables; if the 
@@ -105,21 +112,20 @@ one of the commands should be help, which will print out help text about the com
 """
 def help():
     print("Help Section - Note that you must include quotations around input where directed. ")  # Can change message later
-    print("To view the top songs in the database, type 'show all songs'")
-    print("To view a range of top songs, type 'songs range LOWVAL to HIGHVAL'")
-    print("To view all songs of a specific genre, type 'songs genre \"SAMPLEGENRE\"'")
-    print("To view all songs from a particular artist, type 'artist songs \"SAMPLEARTIST\"'")
-    print("To view songs within a particular length, type 'songs between length LOWVAL to HIGHVAL'") #TODO: convert to seconds/minutes? (how does user enter this)
-    print("To view the genre of a particular song, type 'song length \"SONG TITLE\"'")
-    print("To view the rank of a particular song, type 'song popularity \"SONG TITLE\"'")
-    print("To view the length of a particular length, type 'song length \"SONG TITLE\"'")
-    print("To view the artist of a particular song, type 'song artist \"SONG TITLE\"'")
-    print("To view all songs between a certain popularity, type 'songs between popularity LOWVAL to HIGHVAL'")
-    print("To quit to program, type 'quit'")
+    print("-To view the top songs in the database, type 'show all songs'")
+    print("-To view a range of top songs, type 'songs range LOWVAL to HIGHVAL'")
+    print("-To view all songs of a specific genre, type 'songs genre \"SAMPLEGENRE\"'")
+    print("-To view all songs from a particular artist, type 'artist songs \"SAMPLEARTIST\"'")
+    print("-To view songs within a particular length, type 'songs between length LOWVAL to HIGHVAL'") #TODO: convert to seconds/minutes? (how does user enter this)
+    print("-To view the genre of a particular song, type 'song length \"SONG TITLE\"'")
+    print("-To view the rank of a particular song, type 'song popularity \"SONG TITLE\"'")
+    print("-To view the length of a particular length, type 'song length \"SONG TITLE\"'")
+    print("-To view the artist of a particular song, type 'song artist \"SONG TITLE\"'")
+    print("-To view all songs between a certain popularity, type 'songs between popularity LOWVAL to HIGHVAL'")
+    print("-To quit to program, type 'quit'")
 
 
 def quit():
     exit(0)
-
 
 main()
