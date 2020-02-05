@@ -16,6 +16,7 @@ select songs where popularity is < some value
 select songs where popularity is > some value
 """
 import Queryfunctions
+import re
 # keep program running and reentering the CLI, in the future program will run
 # until quit command is issued.
 def main():
@@ -60,12 +61,13 @@ def main():
             Query.artistBetweenRank(lowval, highval)
 
         # To view all songs of a specific genre
-        if "songs genre" in request: #TODO: Retrieve genre
-            Query.genreAndSong()
+        if "songs genre" in request: #TODO: Test this
+            genre = re.findall(r'\"(.+?)\"', request)
+            Query.genreAndSong(genre)
 
         # To view all songs from a particular artist
-        if "artist songs" in request: #TODO: Retrieve artist
-            artist = re.findall(r"'([^]*'", request) #working on this :p
+        if "artist songs" in request: #TODO: Test this
+            artist = re.findall(r'\"(.+?)\"', request)
             Query.artistAndSong(artist)
 
         # To view songs within a particular length
@@ -77,24 +79,29 @@ def main():
             Query.songBetweenLength(lowval, highval)
 
         # To view the popularity rank of a particular artist
-        if "artist popularity" in request: #TODO: Retrieve artist
-            Query.artistandRank()
+        if "artist popularity" in request: #TODO: Test this
+            artist = re.findall(r'\"(.+?)\"', request)
+            Query.artistandRank(artist)
 
         # To view the artist of a song
-        if "song artist" in request: #TODO: Retrieve song
-            Query.songAndArtist()
+        if "song artist" in request: #TODO: Test this
+            song = re.findall(r'\"(.+?)\"', request)
+            Query.songAndArtist(song)
 
         # To view the genre of a particular song
         if "song genre" in request: #TODO: Retrieve song
-            Query.songAndGenre()
+            song = re.findall(r'\"(.+?)\"', request)
+            Query.songAndGenre(song)
 
         # To view the length of a particular song
         if "song length" in request: #TODO: Retrieve song
-            Query.songAndLength()
+            song = re.findall(r'\"(.+?)\"', request)
+            Query.songAndLength(song)
 
         # To view the rank of a particular song
         if "song popularity" in request: #TODO: Retrieve song
-            Query.songAndRank()
+            song = re.findall(r'\"(.+?)\"', request)
+            Query.songAndRank(song)
 
 """
 one of the commands should be load data, which will create the database 
