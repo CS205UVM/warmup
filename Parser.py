@@ -39,69 +39,58 @@ def main():
 
         # To view the top songs in the database
         if request == "show all songs":
-            Query.allSongs() #TODO: This is ex of call not call for this request
+            Query.all_songs(c) #TODO: This is ex of call not call for this request
 
-        # To view the top artists in the database
-        if request == "show all artists":
-            Query.allArtists()
+        # To view songs between popularity
+        if request == "songs between popularity": #TODO: TEST THIS
+            values = [int(s) for s in s.split() if s.isdigit()]
+            lowval = values[0]
+            highval = values[1]
+            Query.song_between_popularity(c,lowval,highval)
 
         # To view a range of top songs
         if "songs range" in request: #TODO: TEST THIS
             values = [int(s) for s in s.split() if s.isdigit()]
             lowval = values[0]
             highval = values[1]
-            Query.songBetweenRank(lowval, highval)
-
-        # To view a range of top artists
-        if "artists range" in request: #TODO: TEST THIS
-            values = [int(s) for s in s.split() if s.isdigit()]
-            lowval = values[0]
-            highval = values[1]
-            Query.songBetweenRank(lowval, highval)
-            Query.artistBetweenRank(lowval, highval)
+            Query.song_between_rank(c,lowval, highval)
 
         # To view all songs of a specific genre
         if "songs genre" in request: #TODO: Test this
             genre = re.findall(r'\"(.+?)\"', request)
-            Query.genreAndSong(genre)
+            Query.songs_by_genre(c,genre)
 
         # To view all songs from a particular artist
         if "artist songs" in request: #TODO: Test this
             artist = re.findall(r'\"(.+?)\"', request)
-            Query.artistAndSong(artist)
+            Query.artist_and_song(c,artist)
 
         # To view songs within a particular length
         if "songs between length" in request: #TODO: TEST THIS
             values = [int(s) for s in s.split() if s.isdigit()]
             lowval = values[0]
             highval = values[1]
-            Query.songBetweenRank(lowval, highval)
-            Query.songBetweenLength(lowval, highval)
-
-        # To view the popularity rank of a particular artist
-        if "artist popularity" in request: #TODO: Test this
-            artist = re.findall(r'\"(.+?)\"', request)
-            Query.artistandRank(artist)
+            Query.song_between_length(c,lowval, highval)
 
         # To view the artist of a song
         if "song artist" in request: #TODO: Test this
             song = re.findall(r'\"(.+?)\"', request)
-            Query.songAndArtist(song)
+            Query.song_and_artist(c,song)
 
         # To view the genre of a particular song
         if "song genre" in request: #TODO: Retrieve song
             song = re.findall(r'\"(.+?)\"', request)
-            Query.songAndGenre(song)
+            Query.song_and_genre(c,song)
 
         # To view the length of a particular song
         if "song length" in request: #TODO: Retrieve song
             song = re.findall(r'\"(.+?)\"', request)
-            Query.songAndLength(song)
+            Query.song_and_length(c,song)
 
         # To view the rank of a particular song
         if "song popularity" in request: #TODO: Retrieve song
             song = re.findall(r'\"(.+?)\"', request)
-            Query.songAndRank(song)
+            Query.song_and_popularity(c,song)
 
 """
 one of the commands should be load data, which will create the database 
@@ -117,17 +106,15 @@ one of the commands should be help, which will print out help text about the com
 def help():
     print("Help Section - Note that you must include quotations around input where directed. ")  # Can change message later
     print("To view the top songs in the database, type 'show all songs'")
-    print("To view the top artists in the database, type 'show all artists'")
     print("To view a range of top songs, type 'songs range LOWVAL to HIGHVAL'")
-    print("To view a range of top artists, type 'artists range LOWVAL to HIGHVAL'")
     print("To view all songs of a specific genre, type 'songs genre \"SAMPLEGENRE\"'")
     print("To view all songs from a particular artist, type 'artist songs \"SAMPLEARTIST\"'")
     print("To view songs within a particular length, type 'songs between length LOWVAL to HIGHVAL'") #TODO: convert to seconds/minutes? (how does user enter this)
-    print("To view the popularity rank of a particular artist, type 'artist popularity \"ARTIST NAME\"'")
     print("To view the genre of a particular song, type 'song length \"SONG TITLE\"'")
     print("To view the rank of a particular song, type 'song popularity \"SONG TITLE\"'")
     print("To view the length of a particular length, type 'song length \"SONG TITLE\"'")
     print("To view the artist of a particular song, type 'song artist \"SONG TITLE\"'")
+    print("To view all songs between a certain popularity, type 'songs between popularity LOWVAL to HIGHVAL'")
     print("To quit to program, type 'quit'")
 
 
