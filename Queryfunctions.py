@@ -1,58 +1,83 @@
-# if the user wants a list of all songs
-def allSongs():
+import sqlite3
 
-    return
 
-# if the user wants a list of all artists
-def allArtists():
+# The all_songs function displays all of the songs and its information
+# Parameter c is the database cursor
+def all_songs(c):
+    for row in c.execute("SELECT * FROM songs JOIN artists ON songs.artist_name = artists.artist_name"):
+        print(row)
 
-    return
 
-# if the user requests an artist and wants their song
-def artistAndSong(artist):
+# The artist_and_song function displays an artist and all the songs by that artist
+def artist_and_song(c, artist):
+    for row in c.execute("SELECT artists.artist_name, song_name FROM songs JOIN artists "
+                         "ON songs.artist_name = artists.artist_name "
+                         "WHERE artist_name == ?", (artist,)):
+        print(row)
 
-    return
 
 # if the user requests a song and wants the artist
-def songAndArtist(song):
+def song_and_artist(c, song):
+    for row in c.execute("SELECT song_name, songs.artist_name FROM songs JOIN artists "
+                          "ON songs.artist_name = artists.artist_name "
+                          "WHERE song_name == ?", (song,)):
+        print(row)
 
-    return
 
-# if a user requests a song and wants the popularity
-def songAndRank(song):
+# if a user requests a song and wants its popularity
+def song_and_popularity(c,song):
+    for row in c.execute("SELECT song_name, popularity FROM songs JOIN artists "
+                         "ON songs.artist_name = artists.artist_name "
+                         "WHERE song_name == ?", (song,)):
+        print(row)
 
-    return
 
 # if a user requests a song and wants its genre
-def songAndGenre(song):
+def song_and_genre(c,song):
+    for row in c.execute("SELECT song_name, genre FROM songs JOIN artists "
+                         "ON songs.artist_name = artists.artist_name "
+                         "WHERE song_name == ?", (song,)):
+        print(row)
 
-    return
 
 # if a user requests a genre and wants its songs
-def genreAndSong(genre):
+def songs_by_genre(c,genre):
+    for row in c.execute("SELECT genre, song_name FROM songs JOIN artists "
+                         "ON songs.artist_name = artists.artist_name "
+                         "WHERE genre == ?", (genre,)):
+        print(row)
 
-    return
 
-#if a user requests a song and its length
-def songAndLength(song):
+# if a user requests a song and its length
+def song_and_length(c,song):
+    for row in c.execute("SELECT song_name, duration FROM songs JOIN artists "
+                         "ON songs.artist_name = artists.artist_name "
+                         "WHERE song_name == ?", (song,)):
+        print(row)
 
-    return
 
 # if a user wants songs in a range of popularity
-def songBetweenRank(lowval,highval):
+def song_between_popularity(c, lowval, highval):
+    for row in c.execute("SELECT song_name, popularity FROM songs JOIN artists "
+                         "ON songs.artist_name = artists.artist_name "
+                         "WHERE popularity BETWEEN ? AND ?", (lowval, highval)):
+        print(row)
 
-    return
+
+def song_between_rank(c, lowval, highval):
+    for row in c.execute("SELECT song_name, rank FROM songs JOIN artists "
+                         "ON songs.artist_name = artists.artist_name "
+                         "WHERE rank BETWEEN ? AND ?", (lowval, highval)):
+        print(row)
 
 
-#if a user wants songs in a range of length length
-def songBetweenLength(lowval,highval):
+# if a user wants songs in a range of length length
+def song_between_length(c,lowval, highval):
+    for row in c.execute("SELECT song_name, duration FROM songs JOIN artists "
+                         "ON songs.artist_name = artists.artist_name "
+                         "WHERE duration BETWEEN ? AND ?", (lowval, highval)):
+        print(row)
 
-    return
 
-def artistandRank(artist):
 
-    return
 
-def artistBetweenRank(lowval,highval):
-
-    return
