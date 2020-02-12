@@ -19,12 +19,12 @@ import Queryfunctions
 import re
 import sqlite3
 from sqlite3 import Error
-# keep program running and reentering the CLI, in the future program will run
-# until quit command is issued.
-def main():
 
+
+# keep program running and reentering the CLI until user types quit
+def main():
     print("Welcome to Song/Artist Parser")  # Greeting can be changed later
-    print("=============================")
+    print("------------------------------")
     print("Enter commands to find data")
     print("Hint: type help to get a list of commands")
 
@@ -33,8 +33,7 @@ def main():
 
     while True:
         # Get command from user
-        print("==>", end =" ")
-        request = input("")
+        request = input(">")
 
         # Conditionals corresponding to words entered
         # To view help options
@@ -136,7 +135,7 @@ def main():
                 else:
                     print(lowval)
                     print(highval)
-                    # Query.song_between_rank(c,lowval, highval)
+                    #Query.song_between_rank(c,lowval, highval) TODO: causes program to crash
 
             else:
                 print("Your search for a range of songs could not be understood. ")
@@ -144,9 +143,42 @@ def main():
 
 
         # To view all songs of a specific genre
-        elif "songs genre" in request: #TODO: Test this
-            genre = re.findall(r'\"(.+?)\"', request)
-            Query.songs_by_genre(c,genre)
+        elif "songs genre" in request:
+            # Split input up
+            request_array = request.split()
+
+            # Variable for valid search
+            valid = False
+
+            # Check that array begins with "songs" and "genre" for this search
+            if request_array[0] == "songs" and request_array[1] == "genre":
+                # Concatenate rest of array into one string - represents genre searched
+                genre = ""
+                for i in range(len(request_array) - 2):
+                    genre += request_array[i + 2]
+                    genre += " "
+                # Remove trailing space from string
+                genre = genre[:-1]
+
+                # Check input is in quotes
+                if genre[0] == "\"" and genre[-1] == "\"":
+                    # get genre searched
+                    genre_str = ""
+
+                    for char in range(len(genre) - 2):
+                        # extract genre from string
+                        genre_str += genre[char + 1]
+
+                    valid = True
+
+            if valid:
+                # Query.songs_by_genre(c,genre_str)
+                pass
+
+            else:
+                print("Your search for a genre of songs could not be understood. ")
+                print("Ensure you are entering data as directed in the help menu. ")
+
 
         # To view all songs from a particular artist
         elif "artist songs" in request: #TODO: Test this
