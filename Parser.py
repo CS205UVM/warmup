@@ -181,9 +181,42 @@ def main():
 
 
         # To view all songs from a particular artist
-        elif "artist songs" in request: #TODO: Test this
-            artist = re.findall(r'\"(.+?)\"', request)
-            Query.artist_and_song(c,artist)
+        elif "artist songs" in request:
+            # Split input up
+            request_array = request.split()
+
+            # Variable for valid search
+            valid = False
+
+            # Check that array begins with "artist" and "songs" for this search
+            if request_array[0] == "artist" and request_array[1] == "songs":
+                # Concatenate rest of array into one string - represents artist searched
+                artist = ""
+                for i in range(len(request_array) - 2):
+                    artist += request_array[i + 2]
+                    artist += " "
+                # Remove trailing space from string
+                artist = artist[:-1]
+
+                # Check input is in quotes
+                if artist[0] == "\"" and artist[-1] == "\"":
+                    # get artist searched
+                    artist_str = ""
+
+                    for char in range(len(artist) - 2):
+                        # extract genre from string
+                        artist_str += artist[char + 1]
+
+                    valid = True
+
+            if valid:
+                # Query.artist_and_song(c,artist_str)
+                pass
+
+            else:
+                print("Your search for songs from an artist could not be understood. ")
+                print("Ensure you are entering data as directed in the help menu. ")
+
 
         # To view songs within a particular length
         elif "songs between length" in request: #TODO: TEST THIS
