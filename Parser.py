@@ -58,7 +58,47 @@ def main():
 
         # To view a range of top songs
         elif "songs range " in request: #TODO: TEST THIS
-            if print(request[12]) !=
+            lowval = 0
+            highval = 0
+            if request[12] != "\"":
+                print("Integers for songs range not recognized, include \"\" around your integers. ")
+                pass
+            else:                                   #0 1 2 3 4 5 6 7 8 910111213141516171819202122232425262728
+                # extract integers - lowval first   #s o n g s   r a n g e   " 1 0 "   t o   " 1 0 "
+                if request[13].isdigit():
+                    lowval = str(request[13])
+                    if request[14].isdigit():
+                        lowval += str(request[14])
+                        lowval = int(lowval)
+                    if request[14] == "\"":
+                        lowval = int(lowval)
+                    if request [15].isdigit():
+                        print("Database does not have that many songs.")
+                # extract high val, note either index 14 or 15 need to be quotes or invalid search
+                if request[14] == "\"" or request[15] == "\"":
+                    if request[14] == "\"":
+                        # if lowval is single digit, index 19 is quote for high digit
+                        if request[19] == "\"":
+                            if request[20].isdigit():
+                                highval = str(request[20])
+                                if request[21] == "\"":
+                                    highval = int(highval)  # convert to int (note high val is single digit)
+
+                                elif request[21].isdigit():
+                                    highval += str(request[21])
+                        # if lowval is double digit request[20] is "
+                        if request[20] == "\"":
+                            if request[21].isdigit():
+                                highval = str(request[21])
+                                # note that if lowval is double digit number, highval needs to be double digit as well
+                                if request[22].isdigit():
+                                    highval += str(request[22]) #TODO left here
+
+            print(lowval)
+            print(highval)
+
+
+
             #values = [int(s) for s in s.split() if s.isdigit()]
             #lowval = values[0]
             #highval = values[1]
