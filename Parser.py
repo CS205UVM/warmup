@@ -47,19 +47,20 @@ def main():
         elif request == "show all songs":
             Query.all_songs(c)
 
-        # To view songs between popularity
-        elif request == "songs between popularity": #TODO: TEST THIS
-            values = [int(s) for s in s.split() if s.isdigit()]
-            lowval = values[0]
-            highval = values[1]
-            Query.song_between_popularity(c,lowval,highval)
+        ## To view songs between popularity                                     Not sure what this was Songs don't have popularity rank
+        ##elif request == "songs between popularity": #TODO: TEST THIS
+        ##    values = [int(s) for s in s.split() if s.isdigit()]
+        ##    lowval = values[0]
+        ##    highval = values[1]
+        ##    Query.song_between_popularity(c,lowval,highval)
 
         # To view a range of top songs
-        elif "songs range" in request: #TODO: TEST THIS
-            values = [int(s) for s in s.split() if s.isdigit()]
-            lowval = values[0]
-            highval = values[1]
-            Query.song_between_rank(c,lowval, highval)
+        elif "songs range " in request: #TODO: TEST THIS
+            if print(request[12]) !=
+            #values = [int(s) for s in s.split() if s.isdigit()]
+            #lowval = values[0]
+            #highval = values[1]
+            #Query.song_between_rank(c,lowval, highval)
 
         # To view all songs of a specific genre
         elif "songs genre" in request: #TODO: Test this
@@ -119,15 +120,15 @@ one of the commands should be help, which will print out help text about the com
 def help():
     print("Help Section - Note that you must include quotations around input where directed. ")  # Can change message later
     print("-To view the top songs in the database, type 'show all songs'")
-    print("-To view a range of top songs, type 'songs range LOWVAL to HIGHVAL'")
+    print("-To view a range of top songs, type 'songs range \"LOWVAL\" to \"HIGHVAL\"'")
     print("-To view all songs of a specific genre, type 'songs genre \"SAMPLEGENRE\"'")
     print("-To view all songs from a particular artist, type 'artist songs \"SAMPLEARTIST\"'")
-    print("-To view songs within a particular length, type 'songs between length LOWVAL to HIGHVAL'")
+    print("-To view songs within a particular length, type 'songs between length \"LOWVAL\" to \"HIGHVAL\"'")
     print("-To view the genre of a particular song, type 'song length \"SONG TITLE\"'")
     print("-To view the rank of a particular song, type 'song popularity \"SONG TITLE\"'")
     print("-To view the length of a particular length, type 'song length \"SONG TITLE\"'")
     print("-To view the artist of a particular song, type 'song artist \"SONG TITLE\"'")
-    print("-To view all songs between a certain popularity, type 'songs between popularity LOWVAL to HIGHVAL'")
+    print("-To view all songs between a certain popularity, type 'songs between popularity \"LOWVAL\" to \"HIGHVAL\"'")
     print("-To quit to program, type 'quit'")
 
 
