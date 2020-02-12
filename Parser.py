@@ -57,52 +57,91 @@ def main():
         ##    Query.song_between_popularity(c,lowval,highval)
 
         # To view a range of top songs
-        elif "songs range " in request: #TODO: TEST THIS
+        elif "songs range " in request:
+            # Split search into a list
+            request_array = request.split()
+            # Initialize - prevent crashing if invalid input
             lowval = 0
             highval = 0
-            if request[12] != "\"":
-                print("Integers for songs range not recognized, include \"\" around your integers. ")
-                pass
-            else:                                   #0 1 2 3 4 5 6 7 8 910111213141516171819202122232425262728
-                # extract integers - lowval first   #s o n g s   r a n g e   " 1 0 "   t o   " 1 0 "
-                if request[13].isdigit():
-                    lowval = str(request[13])
-                    if request[14].isdigit():
-                        lowval += str(request[14])
-                        lowval = int(lowval)
-                    if request[14] == "\"":
-                        lowval = int(lowval)
-                    if request [15].isdigit():
-                        print("Database does not have that many songs.")
-                # extract high val, note either index 14 or 15 need to be quotes or invalid search
-                if request[14] == "\"" or request[15] == "\"":
-                    if request[14] == "\"":
-                        # if lowval is single digit, index 19 is quote for high digit
-                        if request[19] == "\"":
-                            if request[20].isdigit():
-                                highval = str(request[20])
-                                if request[21] == "\"":
-                                    highval = int(highval)  # convert to int (note high val is single digit)
+            valid = False  # confirms if input was valid
 
-                                elif request[21].isdigit():
-                                    highval += str(request[21])
-                        # if lowval is double digit request[20] is "
-                        if request[20] == "\"":
-                            if request[21].isdigit():
-                                highval = str(request[21])
-                                # note that if lowval is double digit number, highval needs to be double digit as well
-                                if request[22].isdigit():
-                                    highval += str(request[22]) #TODO left here
+            # Note: search needs to be typed as 'songs range "LOWVAL" to "HIGHVAL"'
+            # so when search is split, size of list needs to be 5, otherwise it is an invalid search
+            if len(request_array) != 5:
+                valid = False
 
-            print(lowval)
-            print(highval)
+            # Otherwise extract low and high values from range
+            else:
+                # extract index 2 of array (would contain low val)
+                lowval = request_array[2]
+                # extract index 4 of array (should contain high value)
+                highval = request_array[4]
+
+                # First conditional - if lowval entered as single digit
+                if len(lowval) == 3:
+                    # Check user entered quotes around data
+                    if lowval[0] == "\"" and lowval[-1] == "\"":
+                        # Can continue getting low val of range
+                        if lowval[1].isdigit():
+                            lowval = int(lowval[1])
+                            valid = True
+
+                    # Find high val - start by seeing if double or single digit
+                    if len(highval) == 3:
+                        # Check user entered quotes around data
+                        if highval[0] == "\"" and highval[-1] == "\"":
+                            # Can continue getting low val of range
+                            if highval[1].isdigit():
+                                highval = int(highval[1])
+                                valid = True
 
 
+                    # Otherwise - if highvalue a double digit number
+                    elif len(highval) == 4:
+                        # Check user entered quotes around data
+                        if highval[0] == "\"" and highval[-1] == "\"":
+                            if highval[1].isdigit():
+                                if highval[2].isdigit():
+                                    # if both chars are digits, extract double digit lower value
+                                    highval = int(highval[1] + highval[2])
+                                    valid = True
 
-            #values = [int(s) for s in s.split() if s.isdigit()]
-            #lowval = values[0]
-            #highval = values[1]
-            #Query.song_between_rank(c,lowval, highval)
+                # second - if low value size = 4, user entered double digit low value
+                elif len(lowval) == 4:
+                    # Check user entered quotes around data
+                    if lowval[0] == "\"" and lowval[-1] == "\"":
+                        if lowval[1].isdigit():
+                            if lowval[2].isdigit():
+                                # if both chars are digits, extract double digit lower value
+                                lowval = int(lowval[1] + lowval[2])
+                                valid = True
+
+                    # Since lowval is double digit, high value needs to be as well, otherwise invalid search
+                    if len(highval) != 4:
+                        valid = False
+
+                    else:
+                        # Check user entered quotes around data
+                        if highval[0] == "\"" and highval[-1] == "\"":
+                            if highval[1].isdigit():
+                                if highval[2].isdigit():
+                                    # if both chars are digits, extract double digit lower value
+                                    highval = int(highval[1] + highval[2])
+                                    valid = True
+
+            if valid:
+                # Test to ensure lower value is smaller than the highervalue
+                if highval < lowval:
+                    print("The range you entered is invalid.")
+                else:
+                    print(lowval)
+                    print(highval)
+                    # Query.song_between_rank(c,lowval, highval)
+
+            else:
+                print("Your search for a range of songs could not be understood. ")
+                print("Ensure you are entering data as directed in the help menu. ")
+
 
         # To view all songs of a specific genre
         elif "songs genre" in request: #TODO: Test this
