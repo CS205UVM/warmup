@@ -69,21 +69,23 @@ def main():
                 # extract index 4 of array (should contain high value)
                 highval = request_array[4]
 
-                # get lowval as integer
-                lowval_str = ""
-                for i in range(len(lowval) - 2):
-                    lowval_str += lowval[i+1]
-                lowval = lowval_str
+                # Make sure values entered in quotations
+                if lowval[0] == "\"" and lowval[-1] == "\"" and highval[0] == "\"" and highval[-1] == "\"":
+                    # get lowval as integer
+                    lowval_str = ""
+                    for i in range(len(lowval) - 2):
+                        lowval_str += lowval[i+1]
+                    lowval = lowval_str
 
-                # Get highval as integer
-                highval_str = ""
-                for i in range(len(highval) - 2):
-                    highval_str += highval[i + 1]
-                highval = highval_str
+                    # Get highval as integer
+                    highval_str = ""
+                    for i in range(len(highval) - 2):
+                        highval_str += highval[i + 1]
+                    highval = highval_str
 
-                # Check to see both are integers
-                if lowval.isdigit() and highval.isdigit():
-                    valid = True
+                    # Check to see both are integers
+                    if lowval.isdigit() and highval.isdigit():
+                        valid = True
 
             if valid:
                 # Test to ensure lower value is smaller than the highervalue
@@ -196,21 +198,23 @@ def main():
                 # extract index 5 of array (should contain high value)
                 highval = request_array[5]
 
-                # get lowval as integer
-                lowval_str = ""
-                for i in range(len(lowval) - 2):
-                    lowval_str += lowval[i + 1]
-                lowval = lowval_str
+                # Make sure values entered in quotations
+                if lowval[0] == "\"" and lowval[-1] == "\"" and highval[0] == "\"" and highval[-1] == "\"":
+                    # get lowval as integer
+                    lowval_str = ""
+                    for i in range(len(lowval) - 2):
+                        lowval_str += lowval[i + 1]
+                    lowval = lowval_str
 
-                # Get highval as integer
-                highval_str = ""
-                for i in range(len(highval) - 2):
-                    highval_str += highval[i + 1]
-                highval = highval_str
+                    # Get highval as integer
+                    highval_str = ""
+                    for i in range(len(highval) - 2):
+                        highval_str += highval[i + 1]
+                    highval = highval_str
 
-                # Check to see both are integers
-                if lowval.isdigit() and highval.isdigit():
-                    valid = True
+                    # Check to see both are integers
+                    if lowval.isdigit() and highval.isdigit():
+                        valid = True
 
             if valid:
                 # Test to ensure lower value is smaller than the higher value
@@ -223,7 +227,6 @@ def main():
             else:
                 print("Your search for songs within a certain length could not be understood. ")
                 print("Ensure you are entering data as directed in the help menu. ")
-
 
 
         # To view the artist of a song
@@ -265,7 +268,7 @@ def main():
 
 
         # To view the genre of a particular song
-        elif "song genre" in request:
+        elif "genre song " in request:
             # Split input up
             request_array = request.split()
 
@@ -400,21 +403,23 @@ def main():
                 # extract index 5 of array (should contain high value)
                 highval = request_array[5]
 
-                # get lowval as integer
-                lowval_str = ""
-                for i in range(len(lowval) - 2):
-                    lowval_str += lowval[i + 1]
-                lowval = lowval_str
+                # Make sure values entered in quotations
+                if lowval[0] == "\"" and lowval[-1] == "\"" and highval[0] == "\"" and highval[-1] == "\"":
+                    # get lowval as integer
+                    lowval_str = ""
+                    for i in range(len(lowval) - 2):
+                        lowval_str += lowval[i + 1]
+                    lowval = lowval_str
 
-                # Get highval as integer
-                highval_str = ""
-                for i in range(len(highval) - 2):
-                    highval_str += highval[i + 1]
-                highval = highval_str
+                    # Get highval as integer
+                    highval_str = ""
+                    for i in range(len(highval) - 2):
+                        highval_str += highval[i + 1]
+                    highval = highval_str
 
-                # Check to see both are integers
-                if lowval.isdigit() and highval.isdigit():
-                    valid = True
+                    # Check to see both are integers
+                    if lowval.isdigit() and highval.isdigit():
+                        valid = True
 
             if valid:
                 # Test to ensure lower value is smaller than the higher value
@@ -601,7 +606,7 @@ def help():
     print("-To view the rank of a particular song, type 'song rank \"SONG TITLE\"'")
     print("-To view the length of a particular length, type 'song length \"SONG TITLE\"'")
     print("-To view the artist of a particular song, type 'song artist \"SONG TITLE\"'")
-    print("-To view all artists between a certain popularity, type 'artists between popularity \"LOWVAL\" to \"HIGHVAL\"'")
+    print("-To view artists between a certain popularity, type 'artists between popularity \"LOWVAL\" to \"HIGHVAL\"'")
     print("-To quit to program, type 'quit'")
 
 
