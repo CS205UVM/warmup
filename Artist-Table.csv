@@ -1,4 +1,4 @@
-Artist.Name,Genre,Popularity,Foreign Key
+Artist_Name,Genre,Popularity,Foreign_Key
 Ali Gatie,canadian hip hop,89,It's You
 Anuel AA,reggaeton flow,92,China
 Ariana Grande,dance pop,89,7 rings
@@ -16,7 +16,7 @@ Katy Perry,dance pop,89,Never Really Over
 Khalid,pop,84,Talk
 Kygo,edm,88,Higher Love
 Lady Gaga,dance pop,87,Shallow
-Lauv,dance pop,78,"fuck, i'm lonely"
+Lauv,dance pop,78,fuck, i'm lonely
 Lewis Capaldi,pop,88,Someone You Loved
 Lil Nas X,country rap,91,Panini
 Lil Tecca,trap music,92,Ransom
