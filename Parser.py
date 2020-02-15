@@ -34,6 +34,8 @@ def main():
     while True:
         # Get command from user
         request = input(">")
+        conn = create_connection("warmup.db")
+        c = conn.cursor()
 
         # Conditionals corresponding to words entered
         # To view help options
@@ -93,7 +95,7 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    #Query.song_between_rank(c,lowval, highval) TODO: causes program to crash
+                    Query.song_between_rank(c,lowval, highval) #TODO: causes program to crash
 
             else:
                 print("Your search for a range of songs could not be understood. ")
@@ -130,7 +132,7 @@ def main():
                     valid = True
 
             if valid:
-                # Query.songs_by_genre(c,genre_str)
+                Query.songs_by_genre(c,genre_str)
                 pass
 
             else:
@@ -168,7 +170,7 @@ def main():
                     valid = True
 
             if valid:
-                # Query.artist_and_song(c,artist_str)
+                Query.artist_and_song(c,artist_str)
                 pass
 
             else:
@@ -222,7 +224,7 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    # Query.song_between_length(c,lowval, highval) TODO: causes program to crash
+                    Query.song_between_length(c, lowval, highval) #TODO: causes program to crash
 
             else:
                 print("Your search for songs within a certain length could not be understood. ")
@@ -259,7 +261,7 @@ def main():
                     valid = True
 
             if valid:
-                # Query.song_and_artist(c,song_str)
+                Query.song_and_artist(c,song_str)
                 pass
 
             else:
@@ -335,7 +337,7 @@ def main():
                     valid = True
 
             if valid:
-                # Query.song_and_length(c,song_str)
+                Query.song_and_length(c,song_str)
                 pass
 
             else:
@@ -373,7 +375,7 @@ def main():
                     valid = True
 
             if valid:
-                # Query.song_and_popularity(c,song_str)
+                Query.song_and_popularity(c,song_str)
                 pass
 
             else:
@@ -427,7 +429,7 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    # Query.song_between_popularity(c, lowval, highval) TODO: causes program to crash
+                    Query.song_between_popularity(c, lowval, highval) # TODO: causes program to crash
 
             else:
                 print("Your search for songs within a certain length could not be understood. ")
@@ -449,22 +451,22 @@ database already exists, then the command will overwrite the existing database
 def loadData():
     database = "warmup.db"
 
-    sql_create_artist_table = """ CREATE TABLE Artist_DB (
-                                        `Artist_Name` VARCHAR(16),
-                                        `Genre` VARCHAR(16),
-                                        `Popularity` INT,
-                                        `Foreign_Key` VARCHAR(21)
+    sql_create_artist_table = """ CREATE TABLE artists (
+                                        `artist_name` VARCHAR(16),
+                                        `genre` VARCHAR(16),
+                                        `popularity` INT,
+                                        `song_name` VARCHAR(21)
                                         ); """
 
-    sql_create_song_table = """CREATE TABLE Song_DB (
-                                    `Rank` INT,
-                                    `Track_Name` VARCHAR(21),
-                                    `Length_sec` INT,
-                                    `Foreign_Key` VARCHAR(16)
+    sql_create_song_table = """CREATE TABLE songs (
+                                    `rank` INT,
+                                    `track_name` VARCHAR(21),
+                                    `length_sec` INT,
+                                    `artist_name` VARCHAR(16)
                                     );"""
 
     sqlite_insert_song_query = """
-        INSERT INTO Song_DB VALUES
+        INSERT INTO songs VALUES
         (1,'China',302,'Anuel AA'),
         (2,'boyfriend',186,'Ariana Grande'),
         (3,'Ransom',131,'Lil Tecca'),
@@ -506,7 +508,7 @@ def loadData():
         """
 
     sqlite_insert_artist_query = """
-        INSERT INTO Artist_DB VALUES
+        INSERT INTO artists VALUES
         ('Ali Gatie','canadian hip hop',89,'It''s You'),
         ('Anuel AA','reggaeton flow',92,'China'),
         ('Ariana Grande','dance pop',89,'7 rings'),
@@ -583,7 +585,7 @@ def create_table(conn, create_table_sql, insert_table_data):
     """
     try:
         c = conn.cursor()
-        #c.execute(create_table_sql)
+        c.execute(create_table_sql)
         c.execute(insert_table_data)
         conn.commit()
 
