@@ -97,7 +97,7 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    Query.song_between_rank(c,lowval, highval) #TODO: causes program to crash
+                    Query.song_between_rank(c,lowval, highval)
 
             else:
                 print("Your search for a range of songs could not be understood. ")
@@ -228,7 +228,7 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    Query.song_between_length(c, lowval, highval) #TODO: causes program to crash
+                    Query.song_between_length(c, lowval, highval)
 
             else:
                 print("Your search for songs within a certain length could not be understood. ")
@@ -436,7 +436,7 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    Query.song_between_popularity(c, lowval, highval) # TODO: causes program to crash
+                    Query.song_between_popularity(c, lowval, highval)
 
             else:
                 print("Your search for songs within a certain length could not be understood. ")
