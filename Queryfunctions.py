@@ -50,7 +50,7 @@ def songs_by_genre(c,genre):
 
 # if a user requests a song and its length
 def song_and_length(c,song):
-    for row in c.execute("SELECT song_name, duration FROM songs JOIN artists "
+    for row in c.execute("SELECT song_name, length_sec FROM songs JOIN artists "
                          "ON songs.artist_name = artists.artist_name "
                          "WHERE song_name == ?", (song,)):
         print(row)
@@ -73,9 +73,9 @@ def song_between_rank(c, lowval, highval):
 
 # if a user wants songs in a range of length length
 def song_between_length(c,lowval, highval):
-    for row in c.execute("SELECT song_name, duration FROM songs JOIN artists "
+    for row in c.execute("SELECT song_name, length_sec FROM songs JOIN artists "
                          "ON songs.artist_name = artists.artist_name "
-                         "WHERE duration BETWEEN ? AND ?", (lowval, highval)):
+                         "WHERE length_sec BETWEEN ? AND ?", (lowval, highval)):
         print(row)
 
 
