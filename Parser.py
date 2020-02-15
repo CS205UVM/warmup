@@ -88,6 +88,8 @@ def main():
                         valid = True
 
             if valid:
+                highval = int(highval)
+                lowval = int(lowval)
                 # Test to ensure lower value is smaller than the highervalue
                 if highval < lowval:
                     print("The range you entered is invalid.")
@@ -217,12 +219,14 @@ def main():
                         valid = True
 
             if valid:
+                highval = int(highval)
+                lowval = int(lowval)
                 # Test to ensure lower value is smaller than the higher value
                 if highval < lowval:
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    # Query.song_between_length(c,lowval, highval) TODO: causes program to crash
+                    # Query.song_between_length(c,lowval, highval)
 
             else:
                 print("Your search for songs within a certain length could not be understood. ")
@@ -230,7 +234,7 @@ def main():
 
 
         # To view the artist of a song
-        elif "song artist" in request: #TODO: Test this
+        elif "song artist" in request:
             # Split input up
             request_array = request.split()
 
@@ -422,6 +426,9 @@ def main():
                         valid = True
 
             if valid:
+                highval = int(highval)
+                lowval = int(lowval)
+
                 # Test to ensure lower value is smaller than the higher value
                 if highval < lowval:
                     print("The range you entered is invalid.")
