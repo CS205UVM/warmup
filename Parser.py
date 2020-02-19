@@ -36,7 +36,7 @@ def main():
 
         elif request == "show all songs":
             if not loaded:
-                print("Your search could not be completed, the data is not laoded. Use the 'load data' command")
+                print("Your search could not be completed, the data is not loaded. Use the 'load data' command")
             else:
                 if c:
                     Query.all_songs(c)
