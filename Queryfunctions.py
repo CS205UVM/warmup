@@ -4,12 +4,12 @@ import sqlite3
 # The all_songs function displays all of the songs and their information
 # Parameter c is the database cursor
 def all_songs(c):
-    print("Rank\tSong\t\t\t\tLength(s)\t\tGenre\t\t\tPopularity\tArtist")
-    print("----------------------------------------------------------------------------------")
+    print("Rank\tSong\t\t\t\tLength(s)\t\tGenre\t\t\tPopularity\t\tArtist")
+    print("-------------------------------------------------------------------------------------")
     for row in c.execute("SELECT songs.rank, songs.song_name, songs.length_sec, artists.genre, artists.popularity,"
                          "artists.artist_name"
                          " FROM songs JOIN artists ON songs.artist_name = artists.artist_name"):
-       print("{:<7d} {:22s} {:<12d} {:15s} {:^11d} {:11s}".format(*row))
+       print("{:<7d} {:22s} {:<12d} {:15s} {:^15d} {:11s}".format(*row))
 
 
 # The artist_and_song function displays an artist and all the songs by that artist
