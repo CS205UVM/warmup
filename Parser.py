@@ -302,7 +302,7 @@ def main():
                     valid = True
 
             if valid:
-                # Query.song_and_genre(c,song_str)
+                Query.song_and_genre(c,song_str)
                 pass
 
             else:
@@ -472,12 +472,12 @@ def load():
         to_db = [(i['artist_name'], i['genre'], i['popularity'], i['song_name']) for i in dr]
     cur.executemany("INSERT INTO artists (artist_name, genre, popularity, song_name) VALUES (?, ?, ?, ?);", to_db)
 
-    cur.execute("CREATE TABLE songs(rank, track_name, length, artist_name);")  # use your column names here
+    cur.execute("CREATE TABLE songs(rank, song_name, length_sec, artist_name);")  # use your column names here
     with open('Song-Table.csv', 'rt') as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
         to_db = [(i['rank'], i['track_name'], i['length'], i['artist_name']) for i in dr]
-    cur.executemany("INSERT INTO songs (rank, track_name, length, artist_name) VALUES (?, ?, ?, ?);", to_db)
+    cur.executemany("INSERT INTO songs (rank, song_name, length_sec, artist_name) VALUES (?, ?, ?, ?);", to_db)
 
     con.commit()
     con.close()
