@@ -141,7 +141,7 @@ def main():
                         valid = True
 
                 if valid:
-                    if (c):
+                    if c:
                          Query.songs_by_genre(c, genre_str)
                     else:
                         conn = create_connection("warmup.db")
