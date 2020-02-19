@@ -1,4 +1,3 @@
-
 import Queryfunctions
 import sqlite3, csv, os
 from sqlite3 import Error
@@ -44,7 +43,8 @@ def main():
 
             # Note: search needs to be typed as 'songs range "LOWVAL" to "HIGHVAL"'
             # so when search is split, size of list needs to be 5, otherwise it is an invalid search
-            if len(request_array) != 5 or request_array[0] != "songs" or request_array[1] != "range" or request_array[3] != "to":
+            if len(request_array) != 5 or request_array[0] != "songs" or request_array[1] != "range" or request_array[
+                3] != "to":
                 valid = False
 
             # Otherwise extract low and high values from range
@@ -59,7 +59,7 @@ def main():
                     # get lowval as integer
                     lowval_str = ""
                     for i in range(len(lowval) - 2):
-                        lowval_str += lowval[i+1]
+                        lowval_str += lowval[i + 1]
                     lowval = lowval_str
 
                     # Get highval as integer
@@ -117,7 +117,7 @@ def main():
                     valid = True
 
             if valid:
-                Query.songs_by_genre(c,genre_str)
+                Query.songs_by_genre(c, genre_str)
                 pass
 
             else:
@@ -155,7 +155,7 @@ def main():
                     valid = True
 
             if valid:
-                Query.artist_and_song(c,artist_str)
+                Query.artist_and_song(c, artist_str)
                 pass
 
             else:
@@ -233,7 +233,7 @@ def main():
                 for i in range(len(request_array) - 2):
                     song += request_array[i + 2]
                     song += " "
-                # Remove trailing space from string
+                    # Remove trailing space from string
                     song = song[:-1]
 
                 # Check input is in quotes
@@ -248,7 +248,7 @@ def main():
                     valid = True
 
             if valid:
-                Query.song_and_artist(c,song_str)
+                Query.song_and_artist(c, song_str)
                 pass
 
             else:
@@ -286,7 +286,7 @@ def main():
                     valid = True
 
             if valid:
-                Query.song_and_genre(c,song_str)
+                Query.song_and_genre(c, song_str)
                 pass
 
             else:
@@ -324,7 +324,7 @@ def main():
                     valid = True
 
             if valid:
-                Query.song_and_length(c,song_str)
+                Query.song_and_length(c, song_str)
                 pass
 
             else:
@@ -362,7 +362,7 @@ def main():
                     valid = True
 
             if valid:
-                Query.song_and_popularity(c,song_str)
+                Query.song_and_popularity(c, song_str)
                 pass
 
             else:
@@ -450,14 +450,14 @@ def load():
     cur = con.cursor()
 
     cur.execute("CREATE TABLE artists (artist_name, genre, popularity, song_name);")  # use your column names here
-    with open('Artist-Table.csv', 'rt') as fin:  # `with` statement available in 2.5+
+    with open('Artist-Table.csv', 'rt', encoding="UTF-8") as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
         to_db = [(i['artist_name'], i['genre'], int(i['popularity']), i['song_name']) for i in dr]
     cur.executemany("INSERT INTO artists (artist_name, genre, popularity, song_name) VALUES (?, ?, ?, ?);", to_db)
 
     cur.execute("CREATE TABLE songs (rank, song_name, length_sec, artist_name);")  # use your column names here
-    with open('Song-Table.csv', 'rt') as fin:  # `with` statement available in 2.5+
+    with open('Song-Table.csv', 'rt', encoding="UTF-8") as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
         to_db = [(int(i['rank']), i['track_name'], int(i['length']), i['artist_name']) for i in dr]
@@ -485,8 +485,11 @@ def create_connection(db_file):
 """
 one of the commands should be help, which will print out help text about the commands
 """
+
+
 def help():
-    print("Help Section - Note that you must include quotations around input where directed. ")  # Can change message later
+    print(
+        "Help Section - Note that you must include quotations around input where directed. ")  # Can change message later
     print("-To view all of the songs in the database, type 'show all songs'")
     print("-To view a range of top songs, type 'songs range \"LOWVAL\" to \"HIGHVAL\"'")
     print("-To view all songs of a specific genre, type 'songs genre \"SAMPLEGENRE\"'")
@@ -502,5 +505,6 @@ def help():
 
 def quit():
     exit(0)
+
 
 main()
