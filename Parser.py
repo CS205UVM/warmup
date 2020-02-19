@@ -80,7 +80,7 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    Query.song_between_rank(c,lowval, highval)
+                    Query.song_between_rank(c, lowval, highval)
 
             else:
                 print("Your search for a range of songs could not be understood. ")
@@ -453,16 +453,15 @@ def load():
     with open('Artist-Table.csv', 'rt') as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
-        to_db = [(i['artist_name'], i['genre'], i['popularity'], i['song_name']) for i in dr]
+        to_db = [(i['artist_name'], i['genre'], int(i['popularity']), i['song_name']) for i in dr]
     cur.executemany("INSERT INTO artists (artist_name, genre, popularity, song_name) VALUES (?, ?, ?, ?);", to_db)
 
     cur.execute("CREATE TABLE songs (rank, song_name, length_sec, artist_name);")  # use your column names here
     with open('Song-Table.csv', 'rt') as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
-        to_db = [(i['rank'], i['track_name'], i['length'], i['artist_name']) for i in dr]
+        to_db = [(int(i['rank']), i['track_name'], int(i['length']), i['artist_name']) for i in dr]
     cur.executemany("INSERT INTO songs (rank, song_name, length_sec, artist_name) VALUES (?, ?, ?, ?);", to_db)
-
     con.commit()
     con.close()
 

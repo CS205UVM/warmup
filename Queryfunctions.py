@@ -9,7 +9,7 @@ def all_songs(c):
     for row in c.execute("SELECT songs.rank, songs.song_name, songs.length_sec, artists.genre, artists.popularity,"
                          "artists.artist_name"
                          " FROM songs JOIN artists ON songs.artist_name = artists.artist_name"):
-       print("{:7s} {:22s} {:12s} {:15s} {:11s} {:11s}".format(*row))
+       print("{:<7d} {:22s} {:<12d} {:15s} {:^11d} {:11s}".format(*row))
 
 
 # The artist_and_song function displays an artist and all the songs by that artist
@@ -80,7 +80,7 @@ def song_between_popularity(c, lowval, highval):
     for row in c.execute("SELECT songs.song_name, popularity FROM songs JOIN artists "
                          "ON songs.artist_name = artists.artist_name "
                          "WHERE popularity BETWEEN ? AND ?", (lowval, highval)):
-        print("Song: {} Popularity: {}".format(*row))
+        print("Song: {:23s} Popularity: {}".format(*row))
 
 # This function returns a list of songs between a user input rank range
 # The parameter c is the cursor to the database
@@ -90,7 +90,7 @@ def song_between_rank(c, lowval, highval):
     for row in c.execute("SELECT songs.song_name, rank FROM songs JOIN artists "
                          "ON songs.artist_name = artists.artist_name "
                          "WHERE rank BETWEEN ? AND ?", (lowval, highval)):
-        print("Song: {} Rank: {}".format(*row))
+        print("Song: {:23s} Rank: {}".format(*row))
 
 
 # This function returns a list of songs between a user input length range
@@ -101,7 +101,7 @@ def song_between_length(c, lowval, highval):
     for row in c.execute("SELECT songs.song_name, length_sec FROM songs JOIN artists "
                          "ON songs.artist_name = artists.artist_name "
                          "WHERE length_sec BETWEEN ? AND ?", (lowval, highval)):
-        print("Song: {} Length: {}".format(*row))
+        print("Song: {:23s} Length: {}".format(*row))
 
 
 
