@@ -11,12 +11,13 @@ def main():
     print("Hint: type help to get a list of commands")
 
     Query = Queryfunctions
-    load()
-    c = False
+    loaded = False
 
     while True:
         # Get command from user
         request = input(">")
+        conn = create_connection("warmup.db")
+        c = conn.cursor()
 
         # Conditionals corresponding to words entered
         # To view help options
@@ -26,6 +27,10 @@ def main():
         # to quit program
         elif request == "quit":
             quit()
+
+        elif request == "load":
+            load()
+            loaded = True
 
         # To view the top songs in the database
         elif request == "show all songs":
