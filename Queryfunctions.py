@@ -9,7 +9,7 @@ def all_songs(c):
     for row in c.execute("SELECT songs.rank, songs.song_name, songs.length_sec, artists.genre, artists.popularity,"
                          "artists.artist_name"
                          " FROM songs JOIN artists ON songs.artist_name = artists.artist_name"):
-       print("{:<7d} {:22s} {:<12d} {:15s} {:^15d} {:11s}".format(*row))
+       print("{:<7d} {:22s} {:<12d} {:17s} {:<13d} {:11s}".format(*row))
 
 
 # The artist_and_song function displays an artist and all the songs by that artist

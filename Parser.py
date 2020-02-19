@@ -12,12 +12,11 @@ def main():
 
     Query = Queryfunctions
     load()
+    c = False
 
     while True:
         # Get command from user
         request = input(">")
-        conn = create_connection("warmup.db")
-        c = conn.cursor()
 
         # Conditionals corresponding to words entered
         # To view help options
@@ -30,7 +29,12 @@ def main():
 
         # To view the top songs in the database
         elif request == "show all songs":
-            Query.all_songs(c)
+            if c:
+                Query.all_songs(c)
+            else:
+                conn = create_connection("warmup.db")
+                c = conn.cursor()
+                Query.all_songs(c)
 
         # To view a range of top songs
         elif "songs range " in request:
@@ -80,7 +84,12 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    Query.song_between_rank(c, lowval, highval)
+                    if c:
+                        Query.song_between_rank(c, lowval, highval)
+                    else:
+                        conn = create_connection("warmup.db")
+                        c = conn.cursor()
+                        Query.song_between_rank(c, lowval, highval)
 
             else:
                 print("Your search for a range of songs could not be understood. ")
@@ -117,7 +126,12 @@ def main():
                     valid = True
 
             if valid:
-                Query.songs_by_genre(c, genre_str)
+                if (c):
+                     Query.songs_by_genre(c, genre_str)
+                else:
+                    conn = create_connection("warmup.db")
+                    c = conn.cursor()
+                    Query.songs_by_genre(c, genre_str)
                 pass
 
             else:
@@ -155,7 +169,12 @@ def main():
                     valid = True
 
             if valid:
-                Query.artist_and_song(c, artist_str)
+                if c:
+                    Query.artist_and_song(c, artist_str)
+                else:
+                    conn = create_connection("warmup.db")
+                    c = conn.cursor()
+                    Query.artist_and_song(c, artist_str)
                 pass
 
             else:
@@ -211,7 +230,13 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    Query.song_between_length(c, lowval, highval)
+                    if c:
+                        Query.song_between_length(c, lowval, highval)
+                    else:
+                        conn = create_connection("warmup.db")
+                        c = conn.cursor()
+                        Query.song_between_length(c, lowval, highval)
+
 
             else:
                 print("Your search for songs within a certain length could not be understood. ")
@@ -248,7 +273,12 @@ def main():
                     valid = True
 
             if valid:
-                Query.song_and_artist(c, song_str)
+                if c:
+                    Query.song_and_artist(c, song_str)
+                else:
+                    conn = create_connection("warmup.db")
+                    c = conn.cursor()
+                    Query.song_and_artist(c, song_str)
                 pass
 
             else:
@@ -286,7 +316,12 @@ def main():
                     valid = True
 
             if valid:
-                Query.song_and_genre(c, song_str)
+                if c:
+                    Query.song_and_genre(c, song_str)
+                else:
+                    conn = create_connection("warmup.db")
+                    c = conn.cursor()
+                    Query.song_and_genre(c, song_str)
                 pass
 
             else:
@@ -324,7 +359,12 @@ def main():
                     valid = True
 
             if valid:
-                Query.song_and_length(c, song_str)
+                if c:
+                  Query.song_and_length(c, song_str)
+                else:
+                    conn = create_connection("warmup.db")
+                    c = conn.cursor()
+                    Query.song_and_length(c, song_str)
                 pass
 
             else:
@@ -362,7 +402,12 @@ def main():
                     valid = True
 
             if valid:
-                Query.song_and_popularity(c, song_str)
+                if c:
+                    Query.song_and_popularity(c, song_str)
+                else:
+                    conn = create_connection("warmup.db")
+                    c = conn.cursor()
+                    Query.song_and_popularity(c, song_str)
                 pass
 
             else:
@@ -419,7 +464,12 @@ def main():
                     print("The range you entered is invalid.")
                 else:
                     pass
-                    Query.song_between_popularity(c, lowval, highval)
+                    if c:
+                        Query.song_between_popularity(c, lowval, highval)
+                    else:
+                        conn = create_connection("warmup.db")
+                        c = conn.cursor()
+                        Query.song_between_popularity(c, lowval, highval)
 
             else:
                 print("Your search for songs within a certain length could not be understood. ")
