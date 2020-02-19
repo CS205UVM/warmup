@@ -1,20 +1,4 @@
-"""
-IDEA LIST FOR POSSIBLE COMMANDS
-load data
-help
-quit
-select all songs
-select all artists
-select songs and their genres
-select songs and their track lengths
-individual artist and their song
-song and its popularity
-select songs where rank is < some value
-select songs where length is < some value
-select songs where length is > some value
-select songs where popularity is < some value
-select songs where popularity is > some value
-"""
+
 import Queryfunctions
 import sqlite3, csv, os
 from sqlite3 import Error
@@ -349,7 +333,7 @@ def main():
 
 
         # To view the rank of a particular song
-        elif "song rank" in request:
+        elif "song popularity" in request:
             # Split input up
             request_array = request.split()
 
@@ -357,7 +341,7 @@ def main():
             valid = False
 
             # Check that array begins with "song" and "rank" for this search
-            if request_array[0] == "song" and request_array[1] == "rank":
+            if request_array[0] == "song" and request_array[1] == "popularity":
                 # Concatenate rest of array into one string - represents song searched
                 song = ""
                 for i in range(len(request_array) - 2):
@@ -386,8 +370,8 @@ def main():
                 print("Ensure you are entering data as directed in the help menu. ")
 
 
-        # To view artists between popularity
-        elif "artists between popularity" in request:
+        # To view songs between popularity
+        elif "songs between popularity" in request:
             # Split search into a list
             request_array = request.split()
             # Initialize - prevent crashing if invalid input
@@ -397,7 +381,7 @@ def main():
 
             # Note: search needs to be typed as 'songs between length "LOWVAL" to "HIGHVAL"'
             # test all search terms
-            if len(request_array) != 6 or request_array[0] != "artists" or request_array[1] != "between" or request_array[
+            if len(request_array) != 6 or request_array[0] != "songs" or request_array[1] != "between" or request_array[
                 2] != "popularity" or request_array[4] != "to":
                 valid = False
 
@@ -465,14 +449,14 @@ def load():
     con = sqlite3.connect("warmup.db")
     cur = con.cursor()
 
-    cur.execute("CREATE TABLE artists (artist_name, genre , popularity, song_name);")  # use your column names here
+    cur.execute("CREATE TABLE artists (artist_name, genre, popularity, song_name);")  # use your column names here
     with open('Artist-Table.csv', 'rt') as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
         to_db = [(i['artist_name'], i['genre'], i['popularity'], i['song_name']) for i in dr]
     cur.executemany("INSERT INTO artists (artist_name, genre, popularity, song_name) VALUES (?, ?, ?, ?);", to_db)
 
-    cur.execute("CREATE TABLE songs(rank, song_name, length_sec, artist_name);")  # use your column names here
+    cur.execute("CREATE TABLE songs (rank, song_name, length_sec, artist_name);")  # use your column names here
     with open('Song-Table.csv', 'rt') as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
@@ -504,16 +488,16 @@ one of the commands should be help, which will print out help text about the com
 """
 def help():
     print("Help Section - Note that you must include quotations around input where directed. ")  # Can change message later
-    print("-To view the top songs in the database, type 'show all songs'")
+    print("-To view all of the songs in the database, type 'show all songs'")
     print("-To view a range of top songs, type 'songs range \"LOWVAL\" to \"HIGHVAL\"'")
     print("-To view all songs of a specific genre, type 'songs genre \"SAMPLEGENRE\"'")
     print("-To view all songs from a particular artist, type 'artist songs \"SAMPLEARTIST\"'")
     print("-To view songs within a particular length, type 'songs between length \"LOWVAL\" to \"HIGHVAL\"'")
     print("-To view the genre of a particular song, type 'genre song \"SONG TITLE\"'")
-    print("-To view the rank of a particular song, type 'song rank \"SONG TITLE\"'")
+    print("-To view the popularity of a particular song, type 'song popularity \"SONG TITLE\"'")
     print("-To view the length of a particular length, type 'song length \"SONG TITLE\"'")
     print("-To view the artist of a particular song, type 'song artist \"SONG TITLE\"'")
-    print("-To view artists between a certain popularity, type 'artists between popularity \"LOWVAL\" to \"HIGHVAL\"'")
+    print("-To view songs between a certain popularity, type 'songs between popularity \"LOWVAL\" to \"HIGHVAL\"'")
     print("-To quit to program, type 'quit'")
 
 
